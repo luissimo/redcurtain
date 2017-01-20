@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title> Remedy - Responsive Admin Dashboard Template</title>
+  <title> Boekhoudprogramma</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta content="Admin Dashboard" name="description" />
   <meta content="ThemeDesign" name="author" />
@@ -28,10 +28,14 @@
   <div class="content-page">
     <!-- Start content -->
     <div class="content">
-
       <div class="">
         <div class="page-header-title">
           <h4 class="page-title"></h4>
+          <% if notice %>
+              <p class="notice"><%= notice %></p>
+          <% elsif alert %>
+              <p class="alert"><%= alert %></p>
+          <% end %>
         </div>
       </div>
 
