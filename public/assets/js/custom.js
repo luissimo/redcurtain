@@ -1,5 +1,4 @@
-$(document).on(function() {
-    // on body click remove notices
+// on body click remove notices
     $(document).on('click', 'body', function() {
         $('.alert').hide();
         $('.notice').hide();
@@ -12,7 +11,3 @@ $(document).on(function() {
         button.fadeOut(50);
         button.fadeIn(2000);
     }
-
-});
-
-

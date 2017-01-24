@@ -60,11 +60,11 @@
     $(document).ready(function() {
         var counter = $('.products_tr').length;
         $('#add_products').click(function() {
-            $('.products_tr:last').after('<tr class="products_tr"><td><input class="quantity form-control" type="text" value="" name="invoice[products_attributes]['+counter+'][quantity]"></td>' +
-                '<td><textarea class="form-control" name="invoice[products_attributes]['+counter+'][description]"></textarea></td>' +
-                '<td><input id="unitprice" class="unitprice form-control" type="text" name="invoice[products_attributes]['+counter+'][unitprice]"></td>' +
+            $('.products_tr:last').after('<tr class="products_tr"><td><input class="quantity form-control" type="text" value="" name="invoice[items_attributes]['+counter+'][quantity]"></td>' +
+                '<td><textarea class="form-control" name="invoice[items_attributes]['+counter+'][description]"></textarea></td>' +
+                '<td><input id="unitprice" class="unitprice form-control" type="text" name="invoice[items_attributes]['+counter+'][unitprice]"></td>' +
                 '<td class="row_total"></td>' +
-                '<td><select class="btw_percentage" name="invoice[products_attributes]['+counter+'][btw]"><option title="21%" value="21"> 21%</option> ' +
+                '<td><select class="btw_percentage" name="invoice[items_attributes]['+counter+'][btw]"><option title="21%" value="21"> 21%</option> ' +
                 '<option title="6%" value="6"> 6%</option><option title="0%" value="0"> 0%</option></select></td>' +
                 '<td class="delete_tr"><a class="delete" title="Rij verwijderen"><span class="ti-close"></span></a></td></tr>');
             counter ++;
@@ -93,7 +93,7 @@
             invoice_subtotal += formula ;
             $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
             $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
-            var invoice_total = invoice_subtotal + invoice_btwtotaal;
+            var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
             $('.invoice_total').val(invoice_total.toFixed(2));
             $('.invoice_total').text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
@@ -146,7 +146,7 @@
                 invoice_subtotal += formula ;
                 $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
                 $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
-                var invoice_total = invoice_subtotal + invoice_btwtotaal;
+                var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
                 $('.invoice_total').val(invoice_total.toFixed(2));
                 $('.invoice_total').text(currency + invoice_total.toFixed(2));
                 total+=rowtotal;
@@ -161,7 +161,7 @@
     });
 
 // do row total, subtotal, btwtotal & invoice total calculation if unitprice value changes
-    $(document).on('change', '.unitprice', function(){
+    $(document).on('keyup', '.unitprice', function(){
         var total = 0,rowtotal = 0, invoice_btwtotaal = 0, invoice_subtotal = 0, invoice_total = 0;
         $('.products_tr').each(function(){
             $(this).find('.unitprice').val($(this).find('.unitprice').val().replace(/,/g, '.'));
@@ -181,7 +181,7 @@
             invoice_subtotal += formula ;
             $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
             $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
-            var invoice_total = invoice_subtotal + invoice_btwtotaal;
+            var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
             $('.invoice_total').val(invoice_total.toFixed(2));
             $('.invoice_total').text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
@@ -207,7 +207,7 @@
             invoice_subtotal += formula ;
             $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
             $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
-            var invoice_total = invoice_subtotal + invoice_btwtotaal;
+            var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
             $('.invoice_total').val(invoice_total.toFixed(2));
             $('.invoice_total').text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
@@ -230,11 +230,11 @@
                 invoice_btwtotaal += invoice_btw;
                 $('.invoice_btwtotal').val(currency + invoice_btwtotaal.toFixed(2));
                 $('.invoice_btwtotal').text(currency + invoice_btwtotaal.toFixed(2));
-                var formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
+                formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
                 invoice_subtotal += formula ;
                 $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
                 $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
-                var invoice_total = invoice_subtotal + invoice_btwtotaal;
+                var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
                 $('.invoice_total').val(invoice_total.toFixed(2));
                 $('.invoice_total').text(currency + invoice_total.toFixed(2));
                 total+=rowtotal;
@@ -270,7 +270,7 @@
                 invoice_subtotal += formula ;
                 $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
                 $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
-                var invoice_total = invoice_subtotal + invoice_btwtotaal;
+                var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
                 $('.invoice_total').val(invoice_total.toFixed(2));
                 $('.invoice_total').text(currency + invoice_total.toFixed(2));
                 total+=rowtotal;
@@ -283,10 +283,3 @@
             }
         });
     });
-
-
-//  replace dot with comma in row_total
-//    $(document).on('change', '.row_total', function() {
-//      this.text(this.text.replace(/./g, ','));
-//    });
-
