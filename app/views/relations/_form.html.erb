@@ -1,102 +1,132 @@
-<%= form_for(relation) do |f| %>
-  <% if relation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(relation.errors.count, "error") %> prohibited this relation from being saved:</h2>
-
-      <ul>
-      <% relation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<%= form_for @relation, :html => { :class => "form-horizontal customer" } do |f| %>
+    <div class="col-md-12 col-md-offset-2">
+      <% if @relation.errors.any? %>
+          <div id="error_expl" class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= pluralize(@relation.errors.count, "error") %> prohibited this customer from being saved:</h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <% @relation.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :company_name %>
-    <%= f.text_field :company_name %>
-  </div>
+      <div class="form-group">
+        <%= f.label 'Bedrijfsnaam *', :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :company_name, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:company_name) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Voornaam, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :first_name, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:first_name) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Achternaam, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :last_name, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:last_name) %>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Adres 1 *', :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :address_line_1, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:address_line_1) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Adres_2, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :address_line_2, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:address_line_2) %>
+      </div>
+      <div class="form-group">
+        <%= f.label 'Postcode & Stad *', :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :zip_code, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:zip_code) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Land, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :country_name, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:country_name) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Email_adres, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :email_adress, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:email_adress) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Telefoonnummer, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :phone_number, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:phone_number) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :kvk_nummer, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :kvk_number, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:kvk_number) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :btw_nummer, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :btw_number, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:btw_number) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :IBAN, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :iban_number, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:iban_number) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :BIC, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :bic_number, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:bic_number) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Naam_bankhouder, :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :bank_holder_name, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:bank_holder_name) %>
+      </div>
 
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-4">
+          <div class="col-md-6">
+            <%= f.submit 'Opslaan', :class => 'btn btn-primary btn-success btn-block' %>
+          </div>
+          <div class="col-md-6">
+            <%= link_to t('.cancel', :default => 'Annuleren'),
+                        :back , :class => 'btn btn-primary btn-info btn-block' %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
 
-  <div class="field">
-    <%= f.label :address_line_1 %>
-    <%= f.text_field :address_line_1 %>
-  </div>
 
-  <div class="field">
-    <%= f.label :address_line_2 %>
-    <%= f.text_field :address_line_2 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :zip_code %>
-    <%= f.text_field :zip_code %>
-  </div>
-
-  <div class="field">
-    <%= f.label :country_name %>
-    <%= f.text_field :country_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email_adress %>
-    <%= f.text_field :email_adress %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :kvk_number %>
-    <%= f.text_field :kvk_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :btw_number %>
-    <%= f.text_field :btw_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :iban_number %>
-    <%= f.text_field :iban_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :bic_number %>
-    <%= f.text_field :bic_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :bank_holder_name %>
-    <%= f.text_field :bank_holder_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :invoice_id %>
-    <%= f.number_field :invoice_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :quote_id %>
-    <%= f.number_field :quote_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+</div>

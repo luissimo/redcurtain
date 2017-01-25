@@ -1,47 +1,63 @@
-<%= form_for(company) do |f| %>
-  <% if company.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
-      <ul>
-      <% company.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<%= form_for @company, :html => { class: "form-horizontal company", multipart: true } do |f| %>
+    <div class="col-md-12 col-md-offset-2">
+      <% if @company.errors.any? %>
+          <div id="error_expl" class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title">U heeft <%= pluralize(@company.errors.count, "error") %>:</h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <% @company.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :company_name %>
-    <%= f.text_field :company_name %>
-  </div>
+      <div class="form-group">
+        <%= f.label 'Bedrijfsnaam *', :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :company_name, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:company_name) %>
+      </div>
+      <div class="form-group">
+        <%= f.label 'BTW nummer *', :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :btw_number, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:btw_number) %>
+      </div>
+      <div class="form-group">
+        <%= f.label 'IBAN *', :class => 'control-label col-lg-2' %>
+        <div class="col-lg-4">
+          <%= f.text_field :iban_number, :class => 'form-control' %>
+        </div>
+        <%=f.error_span(:iban_number) %>
+      </div>
 
-  <div class="field">
-    <%= f.label :btw_number %>
-    <%= f.text_field :btw_number %>
-  </div>
+      <div class="form-group">
+        <div class="col-lg-4 col-lg-offset-2">
+          <div class="col-md-6">
+            <%= f.submit 'Opslaan', :class => 'btn btn-primary btn-success btn-block' %>
+          </div>
+          <div class="col-md-6">
+            <%= link_to t('.cancel', :default => 'Annuleren'),
+                        companies_path, :class => 'btn btn-primary btn-info btn-block' %>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :iban_number %>
-    <%= f.text_field :iban_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :invoice_id %>
-    <%= f.number_field :invoice_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :quote_id %>
-    <%= f.number_field :quote_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+</div>
+
+
+<script>
+  $('#company_picture').bind('change', function() {
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Uw logo mag niet groter zijn dan 5MB, kies een kleiner bestand.')
+    }
+  });
+</script>

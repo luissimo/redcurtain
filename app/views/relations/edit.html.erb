@@ -1,6 +1,4 @@
-<h1>Editing Relation</h1>
+<%- model_class = Relation -%>
+<h1 class="text-center">Relatie aanpassen</h1><hr/>
 
-<%= render 'form', relation: @relation %>
-
-<%= link_to 'Show', @relation %> |
-<%= link_to 'Back', relations_path %>
+<%= render :partial => '/relations/form' %>

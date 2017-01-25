@@ -1,89 +1,46 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Relation -%>
+<hr/>
+<div class="col-md-12">
+  <h1 class="text-center"><strong><%=t '.title', :default => @relation.company_name %></strong></h1>
+</div>
 
-<p>
-  <strong>Company name:</strong>
-  <%= @relation.company_name %>
-</p>
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-white panel-warning">
+    <div class="panel-body text-center">
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <strong><code><%= model_class.human_attribute_name('Bedrijfsnaam') %>:</code>  <%= @relation.company_name %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('Voornaam') %>:</code>  <%= @relation.first_name %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('Achternaam') %>:</code>  <%= @relation.last_name %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('Adres 1') %>:</code>  <%= @relation.address_line_1 %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('Adres 2') %>:</code>  <%= @relation.address_line_2 %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('Postcode & Stad') %>:</code>  <%= @relation.zip_code %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('Land') %>:</code>  <%= @relation.country_name %></strong><hr/>
+        </div>
+        <div class="col-md-6">
+          <strong><code><%= model_class.human_attribute_name('Email') %>:</code>  <%= @relation.email_adress %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('Telefoon') %>:</code>  <%= @relation.phone_number %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('KVK') %>:</code>  <%= @relation.kvk_number %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('BTW nummer') %>:</code>  <%= @relation.btw_number %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('Iban') %>:</code>  <%= @relation.iban_number %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('BIC') %>:</code>  <%= @relation.bic_number %></strong><hr/>
+          <strong><code><%= model_class.human_attribute_name('Naam bankhouder') %>:</code>  <%= @relation.bank_holder_name %></strong><hr/>
+        </div>
+      </div>
+      <%= link_to t('.back', :default => t("helpers.links.Terug")),
+                  relations_path, :class => 'btn btn-primary btn-lg btn-info'  %>
+      <%= link_to t('.edit', :default => t("helpers.links.Aanpassen")),
+                  edit_relation_path(@relation), :class => 'btn btn-primary btn-lg btn-success' %>
+      <%= link_to t('.destroy', :default => t("helpers.links.Verwijderen")),
+                  relation_path(@relation),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.bevestigen", :default => 'Weet u het zeker?')) },
+                  :class => 'btn btn-primary btn-lg btn-danger' %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @relation.first_name %>
-</p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @relation.last_name %>
-</p>
+<div class="col-md-12 block-center">
 
-<p>
-  <strong>Address line 1:</strong>
-  <%= @relation.address_line_1 %>
-</p>
-
-<p>
-  <strong>Address line 2:</strong>
-  <%= @relation.address_line_2 %>
-</p>
-
-<p>
-  <strong>Zip code:</strong>
-  <%= @relation.zip_code %>
-</p>
-
-<p>
-  <strong>Country name:</strong>
-  <%= @relation.country_name %>
-</p>
-
-<p>
-  <strong>Email adress:</strong>
-  <%= @relation.email_adress %>
-</p>
-
-<p>
-  <strong>Phone number:</strong>
-  <%= @relation.phone_number %>
-</p>
-
-<p>
-  <strong>Kvk number:</strong>
-  <%= @relation.kvk_number %>
-</p>
-
-<p>
-  <strong>Btw number:</strong>
-  <%= @relation.btw_number %>
-</p>
-
-<p>
-  <strong>Iban number:</strong>
-  <%= @relation.iban_number %>
-</p>
-
-<p>
-  <strong>Bic number:</strong>
-  <%= @relation.bic_number %>
-</p>
-
-<p>
-  <strong>Bank holder name:</strong>
-  <%= @relation.bank_holder_name %>
-</p>
-
-<p>
-  <strong>Invoice:</strong>
-  <%= @relation.invoice_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @relation.user_id %>
-</p>
-
-<p>
-  <strong>Quote:</strong>
-  <%= @relation.quote_id %>
-</p>
-
-<%= link_to 'Edit', edit_relation_path(@relation) %> |
-<%= link_to 'Back', relations_path %>
+</div>

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @quote.number %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @quote.currency %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @quote.date %>
+</p>
+
+<p>
+  <strong>Duedate:</strong>
+  <%= @quote.duedate %>
+</p>
+
+<p>
+  <strong>Btwtotal:</strong>
+  <%= @quote.btwtotal %>
+</p>
+
+<p>
+  <strong>Subtotal:</strong>
+  <%= @quote.subtotal %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @quote.total %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @quote.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_quote_path(@quote) %> |
+<%= link_to 'Back', quotes_path %>
