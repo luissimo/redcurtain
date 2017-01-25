@@ -64,7 +64,7 @@
                 '<td><textarea class="form-control" name="invoice[items_attributes]['+counter+'][description]"></textarea></td>' +
                 '<td><input id="unitprice" class="unitprice form-control" type="text" name="invoice[items_attributes]['+counter+'][unitprice]"></td>' +
                 '<td class="row_total"></td>' +
-                '<td><select class="btw_percentage" name="invoice[items_attributes]['+counter+'][btw]"><option title="21%" value="21"> 21%</option> ' +
+                '<td><select class="btw_percentage form-control" name="invoice[items_attributes]['+counter+'][btw]"><option title="21%" value="21"> 21%</option> ' +
                 '<option title="6%" value="6"> 6%</option><option title="0%" value="0"> 0%</option></select></td>' +
                 '<td class="delete_tr"><a class="delete" title="Rij verwijderen"><span class="ti-close"></span></a></td></tr>');
             counter ++;
