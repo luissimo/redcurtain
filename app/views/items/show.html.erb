@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @item.quantity %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>Unitprice:</strong>
+  <%= @item.unitprice %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @item.total %>
+</p>
+
+<p>
+  <strong>Btw:</strong>
+  <%= @item.btw %>
+</p>
+
+<p>
+  <strong>Invoice:</strong>
+  <%= @item.invoice_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @item.user_id %>
+</p>
+
+<p>
+  <strong>Quote:</strong>
+  <%= @item.quote_id %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

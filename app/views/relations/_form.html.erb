@@ -1,0 +1,102 @@
+<%= form_for(relation) do |f| %>
+  <% if relation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(relation.errors.count, "error") %> prohibited this relation from being saved:</h2>
+
+      <ul>
+      <% relation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :company_name %>
+    <%= f.text_field :company_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_line_1 %>
+    <%= f.text_field :address_line_1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_line_2 %>
+    <%= f.text_field :address_line_2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zip_code %>
+    <%= f.text_field :zip_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :country_name %>
+    <%= f.text_field :country_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email_adress %>
+    <%= f.text_field :email_adress %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kvk_number %>
+    <%= f.text_field :kvk_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :btw_number %>
+    <%= f.text_field :btw_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :iban_number %>
+    <%= f.text_field :iban_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bic_number %>
+    <%= f.text_field :bic_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bank_holder_name %>
+    <%= f.text_field :bank_holder_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :invoice_id %>
+    <%= f.number_field :invoice_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quote_id %>
+    <%= f.number_field :quote_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

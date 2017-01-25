@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company name:</strong>
+  <%= @company.company_name %>
+</p>
+
+<p>
+  <strong>Btw number:</strong>
+  <%= @company.btw_number %>
+</p>
+
+<p>
+  <strong>Iban number:</strong>
+  <%= @company.iban_number %>
+</p>
+
+<p>
+  <strong>Invoice:</strong>
+  <%= @company.invoice_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @company.user_id %>
+</p>
+
+<p>
+  <strong>Quote:</strong>
+  <%= @company.quote_id %>
+</p>
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

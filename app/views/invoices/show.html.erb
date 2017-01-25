@@ -1,0 +1,149 @@
+<div class="container">
+  <div class="col-md-12">
+    <div class="panel panel-white">
+      <div class="panel-heading-border-light">
+        <h1 class="text-center text-bold text-blue">#<%= "#{@invoice.number}" %></h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="panel panel-white">
+      <div class="panel-body"><br/>
+        <div class="col-md-10 col-md-offset-1 print_invoice">
+          <div class="panel panel-white">
+            <div class="panel-body">
+              <div class="invoice">
+                <div class="row invoice-logo">
+                  <div class="col-sm-6">
+                    <img src="/" href="/" />
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="text-dark pull-right">
+                      <strong id="factuurnummer_output"><%= @invoice.number %></strong> <br/><small class="text-light" id="factuurdatum_output"><%= @invoice.date.strftime('%d-%m-%Y') %></small>
+                    </p>
+                  </div>
+                </div><hr>
+                <div class="row company_info">
+                  <div class="col-sm-4">
+                    <div class="well">
+                      <address>
+                        <div class="field">
+                          <strong>Bedrijfsnaam: </strong><%= @invoice.relation.company_name %>
+                        </div>
+                        <div class="field">
+                          <strong>Adres: </strong><%= @invoice.relation.address_line_1 %>
+                        </div>
+                        <div class="field">
+                          <strong>Postcode & plaats: </strong><%= @invoice.relation.zip_code %>
+                        </div>
+                      </address>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 pull-right">
+                    <ul class="list-unstyled invoice-details padding-bottom-30 padding-top-10 text-dark">
+                      <li>
+                        <strong>Bedrijfsnaam:</strong> <%= @invoice.company.company_name %>
+                      </li>
+                      <li>
+                        <strong>IBAN:</strong> <%= @invoice.company.iban_number %>
+                      </li>
+                      <li>
+                        <strong>BTW:</strong> <%= @invoice.company.btw_number %>
+                      </li><br/>
+                      <li>
+                        <strong>Factuurdatum:</strong> <em id="date_output"><%= @invoice.date.strftime('%d-%m-%Y') %></em>
+                      </li>
+                      <li>
+                        <strong>Te betalen voor:</strong><em id="duedate_output"> <%= @invoice.duedate.strftime('%d-%m-%Y') %></em>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                      <tr>
+                        <th class="hidden-480"> </th>
+                        <th class="hidden-480"> Beschrijving </th>
+                        <th class="hidden-480"> Bedrag </th>
+                        <th class="hidden-480"> Totaal </th>
+                        <th class="hidden-480"> Btw(%) </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% @invoice.items.each do |item| %>
+                          <% if item.persisted? %>
+                              <tr class="products_tr">
+                                <td> <%= item.quantity %>x </td>
+                                <td> <%= item.description %> </td>
+                                <td> <%= @invoice.currency %><%= '%.2f' % item.unitprice %> </td>
+                                <% btw = (item.btw.to_i / 100 ) + 1 %>
+                                <td class="row_total"><%= @invoice.currency %><%= '%.2f' % (item.quantity * item.unitprice) * (btw) %></td>
+                                <td> <%= item.btw.to_i %>% </td>
+                              </tr>
+                          <% end %>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 invoice-block">
+                    <ul class="list-unstyled amounts text-small pull-right">
+                      <li>
+                        <strong>Subtotaal:</strong>
+                        <div class="field">
+                          <%= "#{@invoice.currency}#{'%.2f' % @invoice.subtotal}" %>
+                          <p class="invoice_subtotal"></p>
+                        </div>
+                      </li>
+                      <!-- <li>
+                         <strong>Discount:</strong>
+                       </li> -->
+                      <li>
+                        <strong>BTW:</strong>
+                        <div class="field">
+                          <%="#{@invoice.currency}#{'%.2f' % @invoice.btwtotal}" %>
+                          <p class="invoice_btwtotal"></p>
+                        </div>
+                      </li>
+                      <li class="text-extra-large text-dark margin-top-15">
+                        <strong>Totaal:</strong>
+                        <div class="field">
+                          <%="#{@invoice.currency}#{'%.2f' % @invoice.total}" %>
+                          <p class="invoice_total"></p>
+                        </div>
+                      </li>
+                    </ul>
+                    <br>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <% @invoice.total = 0 if @invoice.total.nil? %><% @invoice.duedate = Date.today + 2.weeks if @invoice.duedate.nil? %>
+                <%= "We verzoeken u vriendelijk het bovenstaande bedrag van
+            €#{'%.2f' % @invoice.total} voor #{@invoice.duedate.strftime('%d-%m-%Y')} te voldoen op '#{@invoice.company.iban_number}' onder vermelding van het
+            factuurnummer #{@invoice.number}. Voor vragen kunt u contact opnemen per e-mail." %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-3">
+              <%= link_to 'Terug', :back , class: 'btn btn-primary btn-success btn-block' %><hr/>
+            </div>
+            <div class="col-md-4">
+              <%= link_to 'Aanpassen', edit_invoice_path(@invoice), class: 'btn btn-primary btn-info btn-block' %><hr/>
+            </div>
+            <div class="col-md-5">
+              <%= link_to 'Download', invoices_path, class: 'btn btn-primary btn-azure btn-block' %><hr/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

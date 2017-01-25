@@ -1,0 +1,280 @@
+<%= form_for @invoice do |f| %>
+    <div class="container-fluid container-fullw">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4 text-center">
+          <% if @invoice.errors.any? %>
+              <div class="alert alert-danger text-center" >
+                <h4>U heeft <%= pluralize(@invoice.errors.count, "error") %>:</h4>
+
+                <ul class="list-unstyled">
+                  <% @invoice.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-white">
+            <div class="panel-body">
+              <div class="field">
+                <%= f.label :Factuurnummer, class: 'text-bold text-large' %><br>
+                <%= f.text_field :number, placeholder: '2016-0001', id: 'factuurnummer_input', class: 'form-control' %>
+              </div>
+              <div class="field">
+                <%= f.label :Munteenheid, class: 'text-bold text-large' %><br>
+                <%= f.select(:currency, [[' €', '€', title: 'Euro', value: 'EURO'], [' $', '$', title: 'US Dollar', value: 'USD'],
+                                         [' £', '£', title: 'GBP Pound', value: 'GBP']], {}, {id: 'invoice_currency'}) %>
+              </div>
+              <div class="field">
+                <%= f.label :factuurdatum, class: 'text-bold text-large' %><br>
+                <%= f.date_select :date, class: 'form-control' %>
+              </div>
+              <div class="field">
+                <%= f.label 'te betalen voor', class: 'text-bold text-large' %><br>
+                <%= f.date_select :duedate, class: 'form-control' %>
+              </div><br/>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="panel panel-white">
+            <div class="panel-body">
+              <div class="invoice">
+                <div class="row invoice-logo">
+                  <div class="col-sm-8">
+                    <div class="col-sm-6">
+                      <%= f.fields_for :company do |company| %>
+                          </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <p class="text-dark pull-right">
+                              <strong class="factuurnummer_output"><%= @invoice.number %></strong> <br><small class="text-light factuurdatum_output float-right"></small>
+                            </p>
+                          </div>
+                          </div><hr>
+                          <div class="row">
+                            <div class="col-sm-4">
+                              <div class="well">
+                                <address>
+                                  <%= f.fields_for :relation do |relation| %>
+                                      <div class="field">
+                                        <%= relation.label '(bedrijfs)Naam ontvanger', class: 'text-large'  %><br/>
+                                        <%= relation.text_field :company_name, class: 'form-control chosen_relations_companyname' %>
+                                      </div>
+                                      <div class="field">
+                                        <%= relation.label 'Adres ontvanger', class: 'text-large' %><br>
+                                        <%= relation.text_field :address_line_1, class: 'form-control chosen_relations_addressline1' %>
+                                      </div>
+                                      <div class="field">
+                                        <%= relation.label 'Postcode & stad', class: 'text-large' %><br>
+                                        <%= relation.text_field :zip_code, class: 'form-control chosen_relations_zipcode' %>
+                                      </div><hr/>
+                                  <% end %>
+                                  <!-- Button trigger modal -->
+                                  <button type="button" class="btn btn-primary btn-blue form-control" data-toggle="modal" data-target="#myModalRelation">
+                                    Kies bestaande klant
+                                  </button>
+                                </address>
+                              </div>
+                              <!-- Modal -->
+                              <div class="modal fade" id="myModalRelation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                      <h4 class="modal-title" id="myModalLabel">Kies bestaande klant</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <%= select_tag 'Kies klant', content_tag(:option,'Kies een optie...',:value=>"") + options_from_collection_for_select(current_user.relations.all, 'id', 'display_relation_info'), id: "choose_relation", class: 'form-control' %>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-4 pull-right">
+                              <ul class="list-unstyled invoice-details padding-bottom-30 padding-top-10 text-dark">
+                                <li>
+                                  <strong>Bedrijfsnaam:</strong><br/>
+                                  <%= company.text_field :company_name, class: 'form-control chosen_companies_companyname' %>
+                                </li>
+                                <li>
+                                  <strong>BTW:</strong><br/>
+                                  <%= company.text_field :btw_number, class: 'form-control chosen_companies_btw' %>
+                                </li>
+                                <li>
+                                  <strong>IBAN:</strong><br/>
+                                  <%= company.text_field :iban_number, class: 'form-control chosen_companies_iban' %>
+                                </li><br/>
+                                <li>
+                                  <button type="button" class="btn btn-primary btn-blue form-control" data-toggle="modal" data-target="#myModalCompany">
+                                    Kies sjabloon
+                                  </button>
+                                </li><hr/>
+                                <li>
+                                  <strong>Factuurdatum:</strong> <em id="date_output">01/01/2016</em>
+                                </li>
+                                <li>
+                                  <strong>Te betalen voor:</strong><em class="duedate_output"> 11/02/2016 </em>
+                                </li>
+                      <% end %>
+                      </ul>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="myModalCompany" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="myModalLabel">Kies sjabloon</h4>
+                            </div>
+                            <div class="modal-body">
+                              <%= select_tag 'Kies Sjabloon', content_tag(:option,'Kies een optie...',:value=>"") + options_from_collection_for_select(current_user.companies.all, 'id', 'display_company_info'), id: "choose_company", class: 'form-control' %>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <table class="table table-striped table-responsive items-table">
+                            <thead>
+                            <tr>
+                              <th> Hoeveelheid </th>
+                              <th> Beschrijving </th>
+                              <th> Bedrag </th>
+                              <th> Totaal </th>
+                              <th> Btw(%) </th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr id="hiderow">
+                              <td colspan="6"><a id="add_products" class="btn btn-success btn-sm" href="javascript:;" title="Rij toevoegen"><span class="ti-plus"></span>  Rij toevoegen</a></td>
+                            </tr>
+                            </tfoot>
+                            <%= f.fields_for :items do |item| %>
+                                <tbody>
+                                <tr class="products_tr">
+                                  <td> <%= item.text_field :quantity, class: 'quantity form-control' %> </td>
+                                  <td> <%= item.text_area :description, class: 'form-control' %> </td>
+                                  <td> <%= item.text_field :unitprice, class: 'unitprice form-control' %> </td>
+                                  <td class="row_total"> </td>
+                                  <td> <%= item.select(:btw, [[' 21%', 21, title: '21%'],[' 6%', 6, title: '6%'], [' 0%', 0, title: '0%']], {}, {class: 'btw_percentage form-control', id: nil})%> </td>
+                                  <td class='delete_tr'><a class="delete" title="Rij verwijderen"><span class="ti-close"></span></a></td>
+                                </tr>
+                            <% end %>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-8 pull-right">
+                          <ul class="list-unstyled amounts text-lg pull-right">
+                            <li>
+                              <strong>Subtotaal:</strong>
+                              <div class="field">
+                                <%= f.hidden_field :subtotal, class: 'invoice_subtotal' %>
+                                <p class="invoice_subtotal"></p>
+                              </div>
+                            </li>
+                            <!-- <li>
+                               <strong>Discount:</strong>
+                             </li> -->
+                            <li>
+                              <strong>BTW:</strong>
+                              <div class="field">
+                                <%= f.hidden_field :btwtotal, class: 'invoice_btwtotal' %>
+                                <p class="invoice_btwtotal"></p>
+                              </div>
+                            </li>
+                            <hr/>
+                            <li class="text-extra-large text-dark margin-top-15">
+                              <strong>Totaal:</strong>
+                              <div class="field">
+                                <%= f.hidden_field :total, class: 'invoice_total' %>
+                                <p class="invoice_total"></p>
+                              </div>
+                            </li>
+                          </ul>
+                          <br>
+                        </div>
+                      </div>
+                      </div>
+              <div class="panel-footer">
+                We verzoeken u vriendelijk het bovenstaande bedrag van
+                <span class="invoice_total">€0.00</span> voor <span class="duedate_output"></span> te voldoen op onze bankrekening onder vermelding van het
+                factuurnummer <span class="factuurnummer_output"></span>. Voor vragen kunt u contact opnemen per e-mail.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="row actions">
+          <div class="col-md-6">
+            <%= link_to 'Annuleren', invoices_path, class: 'btn btn-primary btn-block btn-info' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.submit 'Opslaan', class: 'btn btn-primary btn-success btn-block' %>
+          </div>
+        </div>
+      </div>
+    </div><br/><br/>
+
+<% end %>
+<!-- end: INVOICE -->
+
+<script>
+  $(document).ready(function() {
+    $("#choose_company").bind("change",function() {
+      if ($(this).val() != undefined) {
+        $.ajax({
+          url : "/kies-bestaande-sjabloon",
+          data: {'company': $(this).val()},
+          dataType: "json",
+          type: "GET",
+          success : function(data) {
+            $('.chosen_companies_companyname').val(data["company_name"]).text(data["company_name"]);
+            $('.chosen_companies_btw').val(data["btw_number"]).text(data["btw_number"]);
+            $('.chosen_companies_iban').val(data["iban_number"]).text(data["iban_number"]);
+            $('.chosen_companies_logo').attr("src", data["logo"]);
+          }
+        })
+      }
+    });
+    $('#choose_relation').on('change', function() {
+      if ($(this).val() != undefined) {
+        $.ajax({
+          url: '/kies-bestaande-relatie',
+          data: {'relation': $(this).val()},
+          dataType: "json",
+          type: "GET",
+          success: function(data) {
+            $('.chosen_relations_companyname').val(data["company_name"]).text(data["company_name"]);
+            $('.chosen_relations_addressline1').val(data["address_line_1"]).text(data["address_line_1"]);
+            $('.chosen_relations_zipcode').val(data["zip_code"]).text(data["zip_code"]);
+          }
+        })
+      }
+    })
+  });
+
+</script>
+<style>
+  .items-table tbody tr {
+    cursor: move;
+  }
+</style>
+
+
+<script src="/assets/js/invoice.js"></script>

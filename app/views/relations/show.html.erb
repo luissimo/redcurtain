@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company name:</strong>
+  <%= @relation.company_name %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @relation.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @relation.last_name %>
+</p>
+
+<p>
+  <strong>Address line 1:</strong>
+  <%= @relation.address_line_1 %>
+</p>
+
+<p>
+  <strong>Address line 2:</strong>
+  <%= @relation.address_line_2 %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @relation.zip_code %>
+</p>
+
+<p>
+  <strong>Country name:</strong>
+  <%= @relation.country_name %>
+</p>
+
+<p>
+  <strong>Email adress:</strong>
+  <%= @relation.email_adress %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @relation.phone_number %>
+</p>
+
+<p>
+  <strong>Kvk number:</strong>
+  <%= @relation.kvk_number %>
+</p>
+
+<p>
+  <strong>Btw number:</strong>
+  <%= @relation.btw_number %>
+</p>
+
+<p>
+  <strong>Iban number:</strong>
+  <%= @relation.iban_number %>
+</p>
+
+<p>
+  <strong>Bic number:</strong>
+  <%= @relation.bic_number %>
+</p>
+
+<p>
+  <strong>Bank holder name:</strong>
+  <%= @relation.bank_holder_name %>
+</p>
+
+<p>
+  <strong>Invoice:</strong>
+  <%= @relation.invoice_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @relation.user_id %>
+</p>
+
+<p>
+  <strong>Quote:</strong>
+  <%= @relation.quote_id %>
+</p>
+
+<%= link_to 'Edit', edit_relation_path(@relation) %> |
+<%= link_to 'Back', relations_path %>
