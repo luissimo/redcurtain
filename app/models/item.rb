@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
 
   belongs_to :invoice, inverse_of: :items, dependent: :destroy
-  # belongs_to :quote, dependent: :destroy
+  belongs_to :quote, inverse_of: :items, dependent: :destroy
   belongs_to :user,  inverse_of: :items, optional: true
 
 
