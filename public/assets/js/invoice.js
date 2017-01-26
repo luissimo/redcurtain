@@ -1,4 +1,3 @@
-
 // Output invoicenumber on invoice.
     $(document).on('keyup', '#factuurnummer_input', function() {
         $('.factuurnummer_output').text($(this).val())
@@ -81,6 +80,8 @@
     btwtotal =  $('.invoice_btwtotal');
     subtotal =  $('.invoice_subtotal');
     total    =  $('.invoice_total');
+    selected_option_invoice_currency = $('#invoice_currency option:selected');
+
 // delete a row from invoice
     $(document).on('click', '.delete_tr', function() {
         $(this).closest('tr').remove();
@@ -92,7 +93,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
             $(this).find('.row_total').text(fixed_rowtotal);
@@ -144,7 +145,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             if (parseFloat($(this).find('.unitprice').val())) {
                 var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
@@ -180,7 +181,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
             $(this).find('.row_total').text(fixed_rowtotal);
@@ -206,7 +207,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
             $(this).find('.row_total').text(fixed_rowtotal);
@@ -232,7 +233,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             if (parseFloat($(this).find('.unitprice').val())) {
                 var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
@@ -268,7 +269,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             if (parseFloat($(this).find('.unitprice').val())) {
                 var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
@@ -293,8 +294,3 @@
             }
         });
     });
-
-
-$("#quote_date_3i")
-$("#quote_date_2i")
-$("#quote_date_1i")
