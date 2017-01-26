@@ -43,9 +43,9 @@
 
 // Output invoice duedate on invoice body
 
-    duedate_1 = $("#invoice_date_1i");
-    duedate_2 = $("#invoice_date_2i");
-    duedate_3 = $("#invoice_date_3i");
+    duedate_1 = $("#invoice_duedate_1i");
+    duedate_2 = $("#invoice_duedate_2i");
+    duedate_3 = $("#invoice_duedate_3i");
 
     $(".duedate_output").text(' ' + (duedate_3.val()) + ' ' + (duedate_2.find(":selected").text()) + ' ' +  (duedate_1.val()) );
 
