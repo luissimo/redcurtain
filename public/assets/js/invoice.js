@@ -1,58 +1,64 @@
-
 // Output invoicenumber on invoice.
     $(document).on('keyup', '#factuurnummer_input', function() {
         $('.factuurnummer_output').text($(this).val())
     });
 
 // Output invoicedate on invoice header
+    date_1 = $("#invoice_date_1i");
+    date_2 = $("#invoice_date_2i");
+    date_3 = $("#invoice_date_3i");
 
-    $(".factuurdatum_output").text( ($("#invoice_date_3i").val()) + ' ' + ($("#invoice_date_2i").find(":selected").text()) + ' ' +  ($("#invoice_date_1i").val()) );
+    $(".factuurdatum_output").text( (date_3.val()) + ' ' + (date_2.find(":selected").text()) + ' ' +  (date_1.val()) );
 
-    $("#invoice_date_3i").change(function()
+    date_3.change(function()
     {
-        $('.factuurdatum_output').text( ($(this).val()) + ' ' + ($("#invoice_date_2i").find(":selected").text()) + ' ' +  ($("#invoice_date_1i").val()) ) ;
+        $('.factuurdatum_output').text( ($(this).val()) + ' ' + (date_2.find(":selected").text()) + ' ' +  (date_1.val()) ) ;
     });
-    $("#invoice_date_2i").change(function()
+    date_2.change(function()
     {
-        $('.factuurdatum_output').text( ($("#invoice_date_3i").val()) + ' ' + ($(this).find(":selected").text()) + ' ' + ($("#invoice_date_1i").val()) ) ;
+        $('.factuurdatum_output').text( (date_3.val()) + ' ' + ($(this).find(":selected").text()) + ' ' + (date_1.val()) ) ;
     });
-    $("#invoice_date_1i").change(function()
+    date_1.change(function()
     {
-        $('.factuurdatum_output').text( ($("#invoice_date_3i").val()) + ' ' + ($("#invoice_date_2i").find(":selected").text()) + ' ' + ($(this).val()) ) ;
+        $('.factuurdatum_output').text( (date_3.val()) + ' ' + (date_2.find(":selected").text()) + ' ' + ($(this).val()) ) ;
     });
 
 
 // Output invoicedate on invoice body
-    $("#date_output").text( ($("#invoice_date_3i").val()) + ' ' + ($("#invoice_date_2i").find(":selected").text()) + ' ' +  ($("#invoice_date_1i").val()) );
+    $("#date_output").text( (date_3.val()) + ' ' + (date_2.find(":selected").text()) + ' ' +  (date_1.val()) );
 
-    $("#invoice_date_3i").change(function()
+    date_3.change(function()
     {
-        $('#date_output').text( ($(this).val()) + ' ' + ($("#invoice_date_2i").find(":selected").text()) + ' ' +  ($("#invoice_date_1i").val()) ) ;
+        $('#date_output').text( ($(this).val()) + ' ' + (date_2.find(":selected").text()) + ' ' +  (date_1.val()) ) ;
     });
-    $("#invoice_date_2i").change(function()
+    date_2.change(function()
     {
-        $('#date_output').text( ($("#invoice_date_3i").val()) + ' ' + ($(this).find(":selected").text()) + ' ' + ($("#invoice_date_1i").val()) ) ;
+        $('#date_output').text( (date_3.val()) + ' ' + ($(this).find(":selected").text()) + ' ' + (date_1.val()) ) ;
     });
-    $("#invoice_date_1i").change(function()
+    date_1.change(function()
     {
-        $('#date_output').text( ($("#invoice_date_3i").val()) + ' ' + ($("#invoice_date_2i").find(":selected").text()) + ' ' + ($(this).val()) ) ;
+        $('#date_output').text( (date_3.val()) + ' ' + (date_2.find(":selected").text()) + ' ' + ($(this).val()) ) ;
     });
 
 // Output invoice duedate on invoice body
 
-    $(".duedate_output").text(' ' + ($("#invoice_duedate_3i").val()) + ' ' + ($("#invoice_duedate_2i").find(":selected").text()) + ' ' +  ($("#invoice_duedate_1i").val()) );
+    duedate_1 = $("#invoice_duedate_1i");
+    duedate_2 = $("#invoice_duedate_2i");
+    duedate_3 = $("#invoice_duedate_3i");
 
-    $("#invoice_duedate_3i").change(function()
+    $(".duedate_output").text(' ' + (duedate_3.val()) + ' ' + (duedate_2.find(":selected").text()) + ' ' +  (duedate_1.val()) );
+
+    duedate_3.change(function()
     {
-        $('.duedate_output').text(' ' +  ($(this).val()) + ' ' + ($("#invoice_duedate_2i").find(":selected").text()) + ' ' +  ($("#invoice_duedate_1i").val()) ) ;
+        $('.duedate_output').text(' ' +  ($(this).val()) + ' ' + (duedate_2.find(":selected").text()) + ' ' +  (duedate_1.val()) ) ;
     });
-    $("#invoice_duedate_2i").change(function()
+    duedate_2.change(function()
     {
-        $('.duedate_output').text(' ' + ($("#invoice_duedate_3i").val()) + ' ' + ($(this).find(":selected").text()) + ' ' + ($("#invoice_duedate_1i").val()) ) ;
+        $('.duedate_output').text(' ' + (duedate_3.val()) + ' ' + ($(this).find(":selected").text()) + ' ' + (duedate_1.val()) ) ;
     });
-    $("#invoice_duedate_1i").change(function()
+    duedate_1.change(function()
     {
-        $('.duedate_output').text(' ' + ($("#invoice_duedate_3i").val()) + ' ' + ($("#invoice_duedate_2i").find(":selected").text()) + ' ' + ($(this).val()) ) ;
+        $('.duedate_output').text(' ' + (duedate_3.val()) + ' ' + (duedate_2.find(":selected").text()) + ' ' + ($(this).val()) ) ;
     });
 
 
@@ -71,6 +77,11 @@
         });
     });
 
+    btwtotal =  $('.invoice_btwtotal');
+    subtotal =  $('.invoice_subtotal');
+    total    =  $('.invoice_total');
+    selected_option_invoice_currency = $('#invoice_currency option:selected');
+
 // delete a row from invoice
     $(document).on('click', '.delete_tr', function() {
         $(this).closest('tr').remove();
@@ -82,20 +93,20 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
             $(this).find('.row_total').text(fixed_rowtotal);
             invoice_btwtotaal += invoice_btw;
-            $('.invoice_btwtotal').val(invoice_btwtotaal.toFixed(2));
-            $('.invoice_btwtotal').text(currency + invoice_btwtotaal.toFixed(2));
-            var formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
+            btwtotal.val(invoice_btwtotaal.toFixed(2));
+            btwtotal.text(currency + invoice_btwtotaal.toFixed(2));
+            formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
             invoice_subtotal += formula ;
-            $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
-            $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
+            subtotal.val(invoice_subtotal.toFixed(2));
+            subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-            $('.invoice_total').val(invoice_total.toFixed(2));
-            $('.invoice_total').text(currency + invoice_total.toFixed(2));
+            total.val(invoice_total.toFixed(2));
+            total.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         });
     });
@@ -134,21 +145,21 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             if (parseFloat($(this).find('.unitprice').val())) {
                 var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
                 $(this).find('.row_total').text(fixed_rowtotal);
                 invoice_btwtotaal += invoice_btw;
-                $('.invoice_btwtotal').val(invoice_btwtotaal.toFixed(2));
-                $('.invoice_btwtotal').text(currency + invoice_btwtotaal.toFixed(2));
-                var formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
+                btwtotal.val(invoice_btwtotaal.toFixed(2));
+                btwtotal.text(currency + invoice_btwtotaal.toFixed(2));
+                formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
                 invoice_subtotal += formula ;
-                $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
-                $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
+                subtotal.val(invoice_subtotal.toFixed(2));
+                subtotal.text(currency + invoice_subtotal.toFixed(2));
                 var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-                $('.invoice_total').val(invoice_total.toFixed(2));
-                $('.invoice_total').text(currency + invoice_total.toFixed(2));
+                total.val(invoice_total.toFixed(2));
+                total.text(currency + invoice_total.toFixed(2));
                 total+=rowtotal;
             }
             else if (isNaN(rowtotal)) {
@@ -170,20 +181,20 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
             $(this).find('.row_total').text(fixed_rowtotal);
             invoice_btwtotaal += invoice_btw;
-            $('.invoice_btwtotal').val(invoice_btwtotaal.toFixed(2));
-            $('.invoice_btwtotal').text(currency + invoice_btwtotaal.toFixed(2));
-            var formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
+            btwtotal.val(invoice_btwtotaal.toFixed(2));
+            btwtotal.text(currency + invoice_btwtotaal.toFixed(2));
+            formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
             invoice_subtotal += formula ;
-            $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
-            $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
+            subtotal.val(invoice_subtotal.toFixed(2));
+            subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-            $('.invoice_total').val(invoice_total.toFixed(2));
-            $('.invoice_total').text(currency + invoice_total.toFixed(2));
+            total.val(invoice_total.toFixed(2));
+            total.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         });
     });
@@ -196,20 +207,20 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
             $(this).find('.row_total').text(fixed_rowtotal);
             invoice_btwtotaal += invoice_btw;
-            $('.invoice_btwtotal').val(invoice_btwtotaal.toFixed(2));
-            $('.invoice_btwtotal').text(currency + invoice_btwtotaal.toFixed(2));
-            var formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
+            btwtotal.val(invoice_btwtotaal.toFixed(2));
+            btwtotal.text(currency + invoice_btwtotaal.toFixed(2));
+            formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
             invoice_subtotal += formula ;
-            $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
-            $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
+            subtotal.val(invoice_subtotal.toFixed(2));
+            subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-            $('.invoice_total').val(invoice_total.toFixed(2));
-            $('.invoice_total').text(currency + invoice_total.toFixed(2));
+            total.val(invoice_total.toFixed(2));
+            total.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         });
     });
@@ -222,21 +233,21 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             if (parseFloat($(this).find('.unitprice').val())) {
                 var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
                 $(this).find('.row_total').text(fixed_rowtotal);
                 invoice_btwtotaal += invoice_btw;
-                $('.invoice_btwtotal').val(currency + invoice_btwtotaal.toFixed(2));
-                $('.invoice_btwtotal').text(currency + invoice_btwtotaal.toFixed(2));
+                btwtotal.val(currency + invoice_btwtotaal.toFixed(2));
+                btwtotal.text(currency + invoice_btwtotaal.toFixed(2));
                 formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
                 invoice_subtotal += formula ;
-                $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
-                $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
+                subtotal.val(invoice_subtotal.toFixed(2));
+                subtotal.text(currency + invoice_subtotal.toFixed(2));
                 var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-                $('.invoice_total').val(invoice_total.toFixed(2));
-                $('.invoice_total').text(currency + invoice_total.toFixed(2));
+                total.val(invoice_total.toFixed(2));
+                total.text(currency + invoice_total.toFixed(2));
                 total+=rowtotal;
             }
             else if (isNaN(rowtotal)) {
@@ -258,21 +269,21 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = $('#invoice_currency option:selected').html();
+            var currency = selected_option_invoice_currency.html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             if (parseFloat($(this).find('.unitprice').val())) {
                 var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
                 $(this).find('.row_total').text(fixed_rowtotal);
                 invoice_btwtotaal += invoice_btw;
-                $('.invoice_btwtotal').val(invoice_btwtotaal.toFixed(2));
-                $('.invoice_btwtotal').text(currency + invoice_btwtotaal.toFixed(2));
-                var formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
+                btwtotal.val(invoice_btwtotaal.toFixed(2));
+                btwtotal.text(currency + invoice_btwtotaal.toFixed(2));
+                formula = (parseFloat($(this).find('.unitprice').val())) * (parseInt($(this).find('.quantity').val()));
                 invoice_subtotal += formula ;
-                $('.invoice_subtotal').val(invoice_subtotal.toFixed(2));
-                $('.invoice_subtotal').text(currency + invoice_subtotal.toFixed(2));
+                subtotal.val(invoice_subtotal.toFixed(2));
+                subtotal.text(currency + invoice_subtotal.toFixed(2));
                 var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-                $('.invoice_total').val(invoice_total.toFixed(2));
-                $('.invoice_total').text(currency + invoice_total.toFixed(2));
+                total.val(invoice_total.toFixed(2));
+                total.text(currency + invoice_total.toFixed(2));
                 total+=rowtotal;
             }
             else if (isNaN(rowtotal)) {

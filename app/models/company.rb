@@ -1,7 +1,7 @@
 class Company < ApplicationRecord
 
   belongs_to :invoice, inverse_of: :company
-  # belongs_to :quote
+  belongs_to :quote, inverse_of: :company
   belongs_to :user, inverse_of: :companies, optional: true
 
   # mount_uploader :picture, PictureUploader
