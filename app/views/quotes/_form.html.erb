@@ -48,8 +48,8 @@
                     <%= image_tag @picture.to_s, class: 'chosen_companies_logo' %>
                   </div>
                   <div class="col-sm-6">
-                    <p class="text-dark">
-                      <strong class="factuurnummer_output"><%= @quote.number %></strong> <small class="text-light factuurdatum_output"></small>
+                    <p class="text-dark pull-right">
+                      <strong class="factuurnummer_output"><%= @quote.number %></strong> <br/><small class="text-light factuurdatum_output"></small>
                     </p>
                   </div>
                 </div><hr>
@@ -167,14 +167,14 @@
                         <td colspan="6"><a id="add_products" class="btn btn-success btn-sm" href="javascript:;" title="Rij toevoegen"><span class="ti-plus"></span>  Rij toevoegen</a></td>
                       </tr>
                       </tfoot>
-                      <%= f.fields_for :products do |product| %>
+                      <%= f.fields_for :items do |item| %>
                           <tbody>
                           <tr class="products_tr">
-                            <td> <%= product.text_field :quantity, class: 'quantity form-control' %> </td>
-                            <td> <%= product.text_area :description, class: 'form-control' %> </td>
-                            <td> <%= product.text_field :unitprice, class: 'unitprice form-control' %> </td>
+                            <td> <%= item.text_field :quantity, class: 'quantity form-control' %> </td>
+                            <td> <%= item.text_area :description, class: 'form-control' %> </td>
+                            <td> <%= item.text_field :unitprice, class: 'unitprice form-control' %> </td>
                             <td class="row_total"> </td>
-                            <td> <%= product.select(:btw, [[' 21%', 21, title: '21%'],[' 6%', 6, title: '6%'], [' 0%', 0, title: '0%']], {}, {class: 'btw_percentage', id: nil})%> </td>
+                            <td> <%= item.select(:btw, [[' 21%', 21, title: '21%'],[' 6%', 6, title: '6%'], [' 0%', 0, title: '0%']], {}, {class: 'btw_percentage', id: nil})%> </td>
                             <td class='delete_tr'><a class="delete" title="Rij verwijderen"><span class="ti-close"></span></a></td>
                           </tr>
                       <% end %>

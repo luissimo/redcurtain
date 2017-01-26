@@ -1,44 +1,159 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="col-md-12">
+    <div class="panel panel-white">
+      <div class="panel-heading-border-light">
+        <h1 class="text-center text-bold text-blue">#<%= "#{@quote.number}" %></h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="panel panel-white">
+      <div class="panel-body"><br/>
+        <div class="col-md-10 col-md-offset-1 print_invoice">
+          <div class="panel panel-white">
+            <div class="panel-body">
+              <div class="invoice">
+                <div class="row invoice-logo">
+                  <div class="col-sm-6">
+                    <img alt="" src="">
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="text-dark pull-right">
+                      <strong id="factuurnummer_output"><%= @quote.number %></strong> <br/>
+                      <small class="text-light" id="factuurdatum_output"><%= @quote.date.strftime('%d-%m-%Y') %></small>
+                    </p>
+                  </div>
+                </div><hr>
+                <div class="row company_info">
+                  <div class="col-sm-4">
+                    <div class="well">
+                      <address>
+                        <div class="field">
+                          <strong>Bedrijfsnaam: </strong><%= @quote.relation.company_name %>
+                        </div>
+                        <div class="field">
+                          <strong>Adres: </strong><%= @quote.relation.address_line_1 %>
+                        </div>
+                        <div class="field">
+                          <strong>Postcode & plaats: </strong><%= @quote.relation.zip_code %>
+                        </div>
+                      </address>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 pull-right">
+                    <ul class="list-unstyled invoice-details padding-bottom-30 padding-top-10 text-dark">
+                      <li>
+                        <strong>Bedrijfsnaam:</strong> <%= @quote.company.company_name %>
+                      </li>
+                      <li>
+                        <strong>IBAN:</strong> <%= @quote.company.iban_number %>
+                      </li>
+                      <li>
+                        <strong>BTW:</strong> <%= @quote.company.btw_number %>
+                      </li><br/>
+                      <li>
+                        <strong>Factuurdatum:</strong> <em id="date_output"><%= @quote.date.strftime('%d-%m-%Y') %></em>
+                      </li>
+                      <li>
+                        <strong>Vervaldatum:</strong><em id="duedate_output"> <%= @quote.duedate.strftime('%d-%m-%Y') %></em>
+                      </li>
+                    </ul>
+                  </div>
+                </div><hr/>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <p class="text-small">
+                      Geachte <span class="customer_name_output"><%= @quote.relation.company_name %></span>,<br/>
+                      Hierbij ontvangt u van ons de prijsopgave <strong class="factuurnummer_output"><%= @quote.number %></strong> voor de onderstaande diensten.
+                    </p>
+                  </div>
+                </div>
+                <div class="row"><hr/>
+                  <div class="col-sm-12">
+                    <table class="table table-striped">
+                      <thead>
+                      <tr>
+                        <th class="hidden-480"> </th>
+                        <th class="hidden-480"> Beschrijving </th>
+                        <th class="hidden-480"> Bedrag </th>
+                        <th class="hidden-480"> Totaal </th>
+                        <th class="hidden-480"> Btw(%) </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% @quote.items.each do |item| %>
+                          <% if item.persisted? %>
+                              <tr class="products_tr">
+                                <td> <%= item.quantity %>x </td>
+                                <td> <%= item.description %> </td>
+                                <td> <%= @quote.currency %><%= '%.2f' % item.unitprice %> </td>
+                                <% btw = (item.btw.to_i / 100 ) + 1 %>
+                                <td class="row_total"><%= @quote.currency %><%= '%.2f' % (item.quantity * item.unitprice) * (btw) %></td>
+                                <td> <%= item.btw.to_i %>% </td>
+                              </tr>
+                          <% end %>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 invoice-block"><hr/>
+                    <ul class="list-unstyled amounts text-small pull-right">
+                      <li>
+                        <strong>Subtotaal:</strong>
+                        <div class="field">
+                          <%= "#{@quote.currency}#{'%.2f' % @quote.subtotal}" %>
+                          <p class="invoice_subtotal"></p>
+                        </div>
+                      </li>
+                      <!-- <li>
+                         <strong>Discount:</strong>
+                       </li> -->
+                      <li>
+                        <strong>BTW:</strong>
+                        <div class="field">
+                          <%="#{@quote.currency}#{'%.2f' % @quote.btwtotal}" %>
+                          <p class="invoice_btwtotal"></p>
+                        </div>
+                      </li><hr/>
+                      <li class="text-extra-large text-dark margin-top-15">
+                        <strong>Totaal:</strong>
+                        <div class="field">
+                          <%="#{@quote.currency}#{'%.2f' % @quote.total}" %>
+                          <p class="invoice_total"></p>
+                        </div>
+                      </li>
+                    </ul>
+                    <br>
+                  </div>
+                </div>
+              </div><hr/>
+              <div class="col-sm-12">
+                <p>
+                  We hopen u hiermee voldoende geïnformeerd te hebben.<br/>
+                  Met vriendelijke groet,<br/>
+                  <span class="company_name_output"><strong><%= @quote.company.company_name %></strong></span>
+                </p><br/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-3">
+              <%= link_to 'Terug', :back , class: 'btn btn-primary btn-success btn-block' %><hr/>
+            </div>
+            <div class="col-md-4">
+              <%= link_to 'Aanpassen', edit_quote_path(@quote), class: 'btn btn-primary btn-info btn-block' %><hr/>
+            </div>
+            <div class="col-md-5">
+              <%= link_to 'Download', quotes_path, class: 'btn btn-primary btn-azure btn-block' %><hr/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Number:</strong>
-  <%= @quote.number %>
-</p>
-
-<p>
-  <strong>Currency:</strong>
-  <%= @quote.currency %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @quote.date %>
-</p>
-
-<p>
-  <strong>Duedate:</strong>
-  <%= @quote.duedate %>
-</p>
-
-<p>
-  <strong>Btwtotal:</strong>
-  <%= @quote.btwtotal %>
-</p>
-
-<p>
-  <strong>Subtotal:</strong>
-  <%= @quote.subtotal %>
-</p>
-
-<p>
-  <strong>Total:</strong>
-  <%= @quote.total %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @quote.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_quote_path(@quote) %> |
-<%= link_to 'Back', quotes_path %>

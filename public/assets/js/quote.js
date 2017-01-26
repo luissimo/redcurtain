@@ -95,7 +95,7 @@ $(document).ready(function() {
 
     btwtotal =  $('.invoice_btwtotal');
     subtotal =  $('.invoice_subtotal');
-    total    =  $('.invoice_total');
+    total_class  =  $('.invoice_total');
     selected_option_invoice_currency = $('#invoice_currency option:selected');
 // delete a row from invoice
 $(document).on('click', '.delete_tr', function() {
@@ -120,8 +120,8 @@ $(document).on('click', '.delete_tr', function() {
         subtotal.val(invoice_subtotal.toFixed(2));
         subtotal.text(currency + invoice_subtotal.toFixed(2));
         var invoice_total = invoice_subtotal + invoice_btwtotaal;
-        total.val(invoice_total.toFixed(2));
-        total.text(currency + invoice_total.toFixed(2));
+        total_class.val(invoice_total.toFixed(2));
+        total_class.text(currency + invoice_total.toFixed(2));
         total+=rowtotal;
     });
 });
@@ -173,8 +173,8 @@ $(document).on('change', '.quantity', function(){
             subtotal.val(invoice_subtotal.toFixed(2));
             subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal;
-            total.val(invoice_total.toFixed(2));
-            total.text(currency + invoice_total.toFixed(2));
+            total_class.val(invoice_total.toFixed(2));
+            total_class.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         }
         else if (isNaN(rowtotal)) {
@@ -185,6 +185,8 @@ $(document).on('change', '.quantity', function(){
         }
     });
 });
+
+
 
 // do row total, subtotal, btwtotal & invoice total calculation if unitprice value changes
 $(document).on('keyup', '.unitprice', function(){
@@ -209,8 +211,8 @@ $(document).on('keyup', '.unitprice', function(){
         subtotal.val(invoice_subtotal.toFixed(2));
         subtotal.text(currency + invoice_subtotal.toFixed(2));
         var invoice_total = invoice_subtotal + invoice_btwtotaal;
-        total.val(invoice_total.toFixed(2));
-        total.text(currency + invoice_total.toFixed(2));
+        total_class.val(invoice_total.toFixed(2));
+        total_class.text(currency + invoice_total.toFixed(2));
         total+=rowtotal;
     });
 });
@@ -235,8 +237,8 @@ $(document).on('change', '.btw_percentage', function(){
         subtotal.val(invoice_subtotal.toFixed(2));
         subtotal.text(currency + invoice_subtotal.toFixed(2));
         var invoice_total = invoice_subtotal + invoice_btwtotaal;
-        total.val(invoice_total.toFixed(2));
-        total.text(currency + invoice_total.toFixed(2));
+        total_class.val(invoice_total.toFixed(2));
+        total_class.text(currency + invoice_total.toFixed(2));
         total+=rowtotal;
     });
 });
@@ -262,8 +264,8 @@ $(document).on('change', '#invoice_currency', function Calculate() {
             subtotal.val(invoice_subtotal.toFixed(2));
             subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal;
-            total.val(invoice_total.toFixed(2));
-            total.text(currency + invoice_total.toFixed(2));
+            total_class.val(invoice_total.toFixed(2));
+            total_class.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         }
         else if (isNaN(rowtotal)) {
@@ -298,8 +300,8 @@ $(document).ready(function() {
             subtotal.val(invoice_subtotal.toFixed(2));
             subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal;
-            total.val(invoice_total.toFixed(2));
-            total.text(currency + invoice_total.toFixed(2));
+            total_class.val(invoice_total.toFixed(2));
+            total_class.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         }
         else if (isNaN(rowtotal)) {

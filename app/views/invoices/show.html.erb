@@ -59,7 +59,7 @@
                     </ul>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row"><hr/>
                   <div class="col-md-12 table-responsive">
                     <table class="table table-striped">
                       <thead>
@@ -89,7 +89,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 invoice-block">
+                  <div class="col-sm-12 invoice-block"><hr/>
                     <ul class="list-unstyled amounts text-small pull-right">
                       <li>
                         <strong>Subtotaal:</strong>
@@ -107,7 +107,7 @@
                           <%="#{@invoice.currency}#{'%.2f' % @invoice.btwtotal}" %>
                           <p class="invoice_btwtotal"></p>
                         </div>
-                      </li>
+                      </li><hr/>
                       <li class="text-extra-large text-dark margin-top-15">
                         <strong>Totaal:</strong>
                         <div class="field">
@@ -124,7 +124,7 @@
                 <% @invoice.total = 0 if @invoice.total.nil? %><% @invoice.duedate = Date.today + 2.weeks if @invoice.duedate.nil? %>
                 <%= "We verzoeken u vriendelijk het bovenstaande bedrag van
             €#{'%.2f' % @invoice.total} voor #{@invoice.duedate.strftime('%d-%m-%Y')} te voldoen op '#{@invoice.company.iban_number}' onder vermelding van het
-            factuurnummer #{@invoice.number}. Voor vragen kunt u contact opnemen per e-mail." %>
+            factuurnummer #{@invoice.number}. Voor vragen kunt u contact opnemen." %>
               </div>
             </div>
           </div>
