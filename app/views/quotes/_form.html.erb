@@ -183,8 +183,8 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 invoice-block">
-                    <ul class="list-unstyled amounts text-small">
+                  <div class="col-sm-12 invoice-block pull-right">
+                    <ul class="list-unstyled amounts text-small pull-right">
                       <li>
                         <strong>Subtotaal:</strong>
                         <div class="field">
@@ -227,18 +227,15 @@
       </div>
       <div class="col-md-12">
         <div class="row actions">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <%= link_to 'Annuleren', quotes_path, class: 'btn btn-primary btn-block btn-info' %>
           </div>
-          <div class="col-md-4">
-            <a onclick="javascript:window.print();" class="btn btn-primary float-right btn-block"> Print <i class="fa fa-print"></i></a>
-          </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <%= f.submit 'Opslaan', class: 'btn btn-primary btn-success btn-block' %>
           </div>
         </div>
       </div>
-    </div><br/><br/>
+    </div>
 <% end %>
 <!-- end: INVOICE -->
 
