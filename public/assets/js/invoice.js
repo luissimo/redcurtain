@@ -79,7 +79,7 @@
 
     btwtotal =  $('.invoice_btwtotal');
     subtotal =  $('.invoice_subtotal');
-    total    =  $('.invoice_total');
+    totalclass   =  $('.invoice_total');
     selected_option_invoice_currency = $('#invoice_currency option:selected');
 
 // delete a row from invoice
@@ -105,8 +105,8 @@
             subtotal.val(invoice_subtotal.toFixed(2));
             subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-            total.val(invoice_total.toFixed(2));
-            total.text(currency + invoice_total.toFixed(2));
+            totalclass.val(invoice_total.toFixed(2));
+            totalclass.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         });
     });
@@ -158,8 +158,8 @@
                 subtotal.val(invoice_subtotal.toFixed(2));
                 subtotal.text(currency + invoice_subtotal.toFixed(2));
                 var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-                total.val(invoice_total.toFixed(2));
-                total.text(currency + invoice_total.toFixed(2));
+                totalclass.val(invoice_total.toFixed(2));
+                totalclass.text(currency + invoice_total.toFixed(2));
                 total+=rowtotal;
             }
             else if (isNaN(rowtotal)) {
@@ -193,8 +193,8 @@
             subtotal.val(invoice_subtotal.toFixed(2));
             subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-            total.val(invoice_total.toFixed(2));
-            total.text(currency + invoice_total.toFixed(2));
+            totalclass.val(invoice_total.toFixed(2));
+            totalclass.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         });
     });
@@ -219,8 +219,8 @@
             subtotal.val(invoice_subtotal.toFixed(2));
             subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-            total.val(invoice_total.toFixed(2));
-            total.text(currency + invoice_total.toFixed(2));
+            totalclass.val(invoice_total.toFixed(2));
+            totalclass.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         });
     });
@@ -246,8 +246,8 @@
                 subtotal.val(invoice_subtotal.toFixed(2));
                 subtotal.text(currency + invoice_subtotal.toFixed(2));
                 var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-                total.val(invoice_total.toFixed(2));
-                total.text(currency + invoice_total.toFixed(2));
+                totalclass.val(invoice_total.toFixed(2));
+                totalclass.text(currency + invoice_total.toFixed(2));
                 total+=rowtotal;
             }
             else if (isNaN(rowtotal)) {
@@ -282,8 +282,8 @@
                 subtotal.val(invoice_subtotal.toFixed(2));
                 subtotal.text(currency + invoice_subtotal.toFixed(2));
                 var invoice_total = invoice_subtotal + invoice_btwtotaal || 0;
-                total.val(invoice_total.toFixed(2));
-                total.text(currency + invoice_total.toFixed(2));
+                totalclass.val(invoice_total.toFixed(2));
+                totalclass.text(currency + invoice_total.toFixed(2));
                 total+=rowtotal;
             }
             else if (isNaN(rowtotal)) {

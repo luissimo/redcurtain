@@ -21,3 +21,12 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    errors:
+      messages:
+        blank: "moet nog ingevuld worden"
+    attributes:
+      invoice:
+        number: "Factuurnummer"

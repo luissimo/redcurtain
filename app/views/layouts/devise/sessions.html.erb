@@ -24,12 +24,11 @@
 <div class="accountbg"></div>
 <div class="wrapper-page">
   <div class="panel panel-color panel-primary panel-pages">
-
     <div class="panel-body">
       <% if notice %>
-          <p class="notice"><%= notice %></p>
+          <p class="alert alert-info"><%= notice %></p>
       <% elsif alert %>
-          <p class="alert"><%= alert %></p>
+          <p class="alert alert-danger"><%= alert %></p>
       <% end %>
       <h3 class="text-center m-t-0 m-b-15">
         <a href="/" class="logo logo-admin"><span>OQBA</span>B.V.</a>
@@ -40,7 +39,6 @@
 
   </div>
 </div>
-
 
 <!-- jQuery  -->
 <script src="/assets/js/jquery.min.js"></script>

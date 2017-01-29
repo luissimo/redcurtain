@@ -95,7 +95,7 @@ $(document).ready(function() {
 
     btwtotal =  $('.invoice_btwtotal');
     subtotal =  $('.invoice_subtotal');
-    total_class  =  $('.invoice_total');
+    totalclass    =  $('.invoice_total');
     selected_option_invoice_currency = $('#invoice_currency option:selected');
 // delete a row from invoice
 $(document).on('click', '.delete_tr', function() {
@@ -120,8 +120,8 @@ $(document).on('click', '.delete_tr', function() {
         subtotal.val(invoice_subtotal.toFixed(2));
         subtotal.text(currency + invoice_subtotal.toFixed(2));
         var invoice_total = invoice_subtotal + invoice_btwtotaal;
-        total_class.val(invoice_total.toFixed(2));
-        total_class.text(currency + invoice_total.toFixed(2));
+        totalclass.val(invoice_total.toFixed(2));
+        totalclass.text(currency + invoice_total.toFixed(2));
         total+=rowtotal;
     });
 });
@@ -173,8 +173,8 @@ $(document).on('change', '.quantity', function(){
             subtotal.val(invoice_subtotal.toFixed(2));
             subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal;
-            total_class.val(invoice_total.toFixed(2));
-            total_class.text(currency + invoice_total.toFixed(2));
+            totalclass.val(invoice_total.toFixed(2));
+            totalclass.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         }
         else if (isNaN(rowtotal)) {
@@ -211,11 +211,12 @@ $(document).on('keyup', '.unitprice', function(){
         subtotal.val(invoice_subtotal.toFixed(2));
         subtotal.text(currency + invoice_subtotal.toFixed(2));
         var invoice_total = invoice_subtotal + invoice_btwtotaal;
-        total_class.val(invoice_total.toFixed(2));
-        total_class.text(currency + invoice_total.toFixed(2));
+        totalclass.val(invoice_total.toFixed(2));
+        totalclass.text(currency + invoice_total.toFixed(2));
         total+=rowtotal;
     });
 });
+
 // do row total, subtotal, btwtotal & invoice total calculation if btw_percentage value changes
 $(document).on('change', '.btw_percentage', function(){
     var total = 0,rowtotal = 0, invoice_btwtotaal = 0, invoice_subtotal = 0, invoice_total = 0;
@@ -237,11 +238,12 @@ $(document).on('change', '.btw_percentage', function(){
         subtotal.val(invoice_subtotal.toFixed(2));
         subtotal.text(currency + invoice_subtotal.toFixed(2));
         var invoice_total = invoice_subtotal + invoice_btwtotaal;
-        total_class.val(invoice_total.toFixed(2));
-        total_class.text(currency + invoice_total.toFixed(2));
+        totalclass.val(invoice_total.toFixed(2));
+        totalclass.text(currency + invoice_total.toFixed(2));
         total+=rowtotal;
     });
 });
+
 // do row total, subtotal, btwtotal & invoice total calculation if currency value changes
 $(document).on('change', '#invoice_currency', function Calculate() {
     var total = 0,rowtotal = 0, invoice_btwtotaal = 0, invoice_subtotal = 0, invoice_total = 0;
@@ -264,8 +266,8 @@ $(document).on('change', '#invoice_currency', function Calculate() {
             subtotal.val(invoice_subtotal.toFixed(2));
             subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal;
-            total_class.val(invoice_total.toFixed(2));
-            total_class.text(currency + invoice_total.toFixed(2));
+            totalclass.val(invoice_total.toFixed(2));
+            totalclass.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         }
         else if (isNaN(rowtotal)) {
@@ -300,8 +302,8 @@ $(document).ready(function() {
             subtotal.val(invoice_subtotal.toFixed(2));
             subtotal.text(currency + invoice_subtotal.toFixed(2));
             var invoice_total = invoice_subtotal + invoice_btwtotaal;
-            total_class.val(invoice_total.toFixed(2));
-            total_class.text(currency + invoice_total.toFixed(2));
+            totalclass.val(invoice_total.toFixed(2));
+            totalclass.text(currency + invoice_total.toFixed(2));
             total+=rowtotal;
         }
         else if (isNaN(rowtotal)) {
