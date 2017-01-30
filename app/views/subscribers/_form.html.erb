@@ -1,0 +1,27 @@
+<div class="col-md-8 col-md-offset-2">
+
+  <%= form_tag subscriber_path(1), method: :put do %>
+      <article>
+        <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+        <% end %>
+        <div class="field">
+          <label class="amount">
+            <span>Bedrag 5,99 p/m</span>
+          </label>
+        </div>
+      </article>
+
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Aanmelden Premium"
+              data-amount="599"
+              data-locale="auto"></script>
+  <% end %>
+
+</div>
+
+
+
