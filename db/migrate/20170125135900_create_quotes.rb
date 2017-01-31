@@ -5,15 +5,12 @@ class CreateQuotes < ActiveRecord::Migration[5.0]
       t.string :currency
       t.date :date
       t.date :duedate
-<<<<<<< HEAD
       t.decimal :btwtotal,    precision: 20, scale: 2
       t.decimal :subtotal,    precision: 20, scale: 2
       t.decimal :total,       precision: 20, scale: 2
-=======
       t.decimal :btwtotal, precision: 20, scale: 2
       t.decimal :subtotal, precision: 20, scale: 2
       t.decimal :total, precision: 20, scale: 2
->>>>>>> quote
       t.integer :user_id
 
       t.timestamps
