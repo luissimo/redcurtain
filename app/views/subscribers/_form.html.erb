@@ -1,27 +1,40 @@
-<div class="col-md-8 col-md-offset-2">
 
-  <%= form_tag subscriber_path(1), method: :put do %>
-      <article>
-        <% if flash[:error].present? %>
-            <div id="error_explanation">
-              <p><%= flash[:error] %></p>
-            </div>
-        <% end %>
-        <div class="field">
-          <label class="amount">
-            <span>Bedrag 5,99 p/m</span>
-          </label>
-        </div>
-      </article>
+<div class="col-lg-6 col-lg-offset-3">
+  <div class="panel panel-color panel-primary">
+    <div class="panel-heading text-center">Je bent nog slechts één stap verwijdert van onbeperkte vrijheid!</div>
+    <div class="panel-body text-center">
+      <%= form_tag subscriber_path(1), method: :put do %>
+          <article>
+            <% if flash[:error].present? %>
+                <div id="error_explanation">
+                  <p><%= flash[:error] %></p>
+                </div>
+            <% end %>
+          </article>
 
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-description="Aanmelden Premium"
-              data-amount="599"
-              data-locale="auto"></script>
-  <% end %>
-
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                  data-description="Aanmelden Premium"
+                  data-email="<%= current_user.email %>"
+                  data-name="Boekhoudprogramma"
+                  data-amount="599"
+                  data-label="Premium worden"
+                  data-locale="nl"
+                  data-currency="EUR"
+                  data-panel-label="Gratis proefperiode starten"></script>
+          <div class="field">
+            <label class="amount">
+              <span class="small">14 dagen gratis proefperiode(daarna 5,99 p/m)</span>
+            </label>
+          </div>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+
+
+
 
 
 
