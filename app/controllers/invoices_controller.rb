@@ -4,6 +4,10 @@ class InvoicesController < ApplicationController
 
   # GET /invoices
   # GET /invoices.json
+
+  def test
+  end
+
   def index
     @invoices =  current_user.invoices.all
     flash.now[:notice] = 'U heeft nog geen facturen toegevoegd' if @invoices.empty?

@@ -30,11 +30,11 @@
               </div>
               <div class="field">
                 <%= f.label :factuurdatum, class: 'text-bold text-large' %><br>
-                <%= f.date_select :date, class: 'form-control' %>
+                <%= f.text_field :date, class: 'datepicker', placeholder: "#{Date.today.strftime('%d-%m-%Y')}" %>
               </div>
               <div class="field">
                 <%= f.label 'te betalen voor', class: 'text-bold text-large' %><br>
-                <%= f.date_select :duedate, class: 'form-control' %>
+                <%= f.text_field :duedate, class: 'datepicker', placeholder: "#{(Date.today + 14).strftime('%d-%m-%Y')}" %>
               </div><br/>
             </div>
           </div>
@@ -170,7 +170,7 @@
                                   <td> <%= item.text_area :description, class: 'form-control' %> </td>
                                   <td> <%= item.text_field :unitprice, class: 'unitprice form-control' %> </td>
                                   <td class="row_total"> </td>
-                                  <td> <%= item.select(:btw, [[' 21%', 21, title: '21%'],[' 6%', 6, title: '6%'], [' 0%', 0, title: '0%']], {}, {class: 'btw_percentage form-control', id: nil})%> </td>
+                                  <td> <%= item.select(:btw, [[' 21%', 21, title: '21%'],[' 6%', 6, title: '6%'], [' 0%', 0, title: '0%']], {}, {class: 'btw_percentage form-control'})%> </td>
                                   <td class='delete_tr'><a class="delete" title="Rij verwijderen"><span class="ti-close"></span></a></td>
                                 </tr>
                             <% end %>
@@ -270,7 +270,9 @@
     })
   });
 
+  $('.datepicker').datepicker();
 </script>
+
 
 
 <script src="/assets/js/invoice.js"></script>

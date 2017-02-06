@@ -19,8 +19,6 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
 
 en:
   activerecord:
@@ -30,3 +28,6 @@ en:
     attributes:
       invoice:
         number: "Factuurnummer"
+  date:
+      order: ["day", "month", "year"]
+      month_names: ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"]

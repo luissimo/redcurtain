@@ -15,6 +15,7 @@ gem 'devise'
 gem 'stripe'
 gem 'figaro'
 gem 'jquery-turbolinks'
+gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

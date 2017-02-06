@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registration: 'registrations'}
 
   root 'invoices#index'
+  get 'test' => 'invoices#test'
 
 
 end
