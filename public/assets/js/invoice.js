@@ -80,7 +80,6 @@
     btwtotal =  $('.invoice_btwtotal');
     subtotal =  $('.invoice_subtotal');
     totalclass   =  $('.invoice_total');
-    selected_option_invoice_currency = $('#invoice_currency option:selected');
 
 // delete a row from invoice
     $(document).on('click', '.delete_tr', function() {
@@ -93,7 +92,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = selected_option_invoice_currency.html();
+            var currency = $('#invoice_currency option:selected').html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
             $(this).find('.row_total').text(fixed_rowtotal);
@@ -145,7 +144,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = selected_option_invoice_currency.html();
+            var currency = $('#invoice_currency option:selected').html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             if (parseFloat($(this).find('.unitprice').val())) {
                 var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
@@ -181,7 +180,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = selected_option_invoice_currency.html();
+            var currency = $('#invoice_currency option:selected').html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
             $(this).find('.row_total').text(fixed_rowtotal);
@@ -207,7 +206,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = selected_option_invoice_currency.html();
+            var currency = $('#invoice_currency option:selected').html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
             $(this).find('.row_total').text(fixed_rowtotal);
@@ -233,7 +232,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = selected_option_invoice_currency.html();
+            var currency = $('#invoice_currency option:selected').html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             if (parseFloat($(this).find('.unitprice').val())) {
                 var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);
@@ -269,7 +268,7 @@
             var btw_percentage =  parseInt($(this).find('.btw_percentage option:selected').val());
             var btw = (btw_percentage / 100 ) + 1;
             rowtotal           =  quantity * unitprice;
-            var currency = selected_option_invoice_currency.html();
+            var currency = $('#invoice_currency option:selected').html();
             var fixed_rowtotal = currency + rowtotal.toFixed(2);
             if (parseFloat($(this).find('.unitprice').val())) {
                 var invoice_btw = (quantity * unitprice * btw) - (quantity * unitprice);

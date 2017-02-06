@@ -30,11 +30,11 @@
               </div>
               <div class="field">
                 <%= f.label :factuurdatum, class: 'text-bold text-large' %><br>
-                <%= f.text_field :date, class: 'datepicker', placeholder: "#{Date.today.strftime('%d-%m-%Y')}" %>
+                <%= f.date_select :date, class: 'form-control' %>
               </div>
               <div class="field">
                 <%= f.label 'te betalen voor', class: 'text-bold text-large' %><br>
-                <%= f.text_field :duedate, class: 'datepicker', placeholder: "#{(Date.today + 14).strftime('%d-%m-%Y')}" %>
+                <%= f.date_select :duedate, default: 14.days.from_now, class: 'datepicker', placeholder: "#{(Date.today + 14).strftime('%d-%m-%Y')}" %>
               </div><br/>
             </div>
           </div>
@@ -270,7 +270,6 @@
     })
   });
 
-  $('.datepicker').datepicker();
 </script>
 
 
