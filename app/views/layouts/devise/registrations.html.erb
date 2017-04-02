@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Boekhoudprogramma - Inloggen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta content="Admin Dashboard" name="description" />
+  <meta content="ThemeDesign" name="author" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- <link rel="shortcut icon" href="assets/images/favicon.ico"> -->
+
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
+  <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<% if current_page?(new_user_registration_path) %>
+<body>
+<!-- Begin page -->
+  <div class="accountbg"></div>
+  <div class="wrapper-page">
+    <div class="panel panel-color panel-primary panel-pages">
+      <div class="panel-body">
+        <% if notice %>
+            <p class="alert alert-info"><%= notice %></p>
+        <% elsif alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+        <h3 class="text-center m-t-0 m-b-15">
+          <a href="/app/assets/javascripts" class="logo logo-admin"><span>OQBA</span>B.V.</a>
+        </h3>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+<!-- jQuery  -->
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/custom.js"></script>
+
+</body>
+<% else %>
+<body class="fixed-left layout2">
+<!-- Begin page -->
+<div id="wrapper">
+  <%= render 'partials/header' %>
+  <%= render 'partials/left_menu' %>
+
+  <div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+      <div class="">
+        <div class="page-header-title">
+          <h4 class="page-title"></h4>
+        </div>
+      </div>
+
+      <div class="page-content-wrapper ">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-primary">
+                <div class="panel-body">
+                  <% if notice %>
+                      <p class="alert alert-info"><%= notice %></p>
+                  <% elsif alert %>
+                      <p class="alert alert-danger"><%= alert %></p>
+                  <% end %>
+                  <%= yield %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+        </div><!-- container -->
+      </div> <!-- Page content Wrapper -->
+    </div> <!-- content -->
+
+    <footer class="footer">
+      <%= Date.today.year %> Project Red Curtain - Alle rechten voorbehouden.
+    </footer>
+  </div>
+</div>
+
+</body>
+<% end %>
+
+</html>

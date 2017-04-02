@@ -21,7 +21,7 @@
             <div class="panel-body">
               <div class="field">
                 <%= f.label :Factuurnummer, class: 'text-bold text-large' %><br>
-                <%= f.text_field :number, placeholder: '2016-0001', id: 'factuurnummer_input', class: 'form-control' %>
+                <%= f.text_field :number, placeholder: @last_used_number, id: 'factuurnummer_input', class: 'form-control' %>
               </div>
               <div class="field">
                 <%= f.label :Munteenheid, class: 'text-bold text-large' %><br>
@@ -76,7 +76,7 @@
                                   <% end %>
                                   <!-- Button trigger modal -->
                                   <button type="button" class="btn btn-primary btn-blue form-control" data-toggle="modal" data-target="#myModalRelation">
-                                    Kies bestaande klant
+                                    Kies bestaande relatie
                                   </button>
                                 </address>
                               </div>
@@ -86,7 +86,7 @@
                                   <div class="modal-content">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                      <h4 class="modal-title" id="myModalLabel">Kies bestaande klant</h4>
+                                      <h4 class="modal-title" id="myModalLabel">Kies bestaande relatie</h4>
                                     </div>
                                     <div class="modal-body">
                                       <%= select_tag 'Kies klant', content_tag(:option,'Kies een optie...',:value=>"") + options_from_collection_for_select(current_user.relations.all, 'id', 'display_relation_info'), id: "choose_relation", class: 'form-control' %>

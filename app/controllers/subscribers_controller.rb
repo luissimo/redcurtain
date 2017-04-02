@@ -22,4 +22,11 @@ class SubscribersController < ApplicationController
     redirect_to invoices_path
   end
 
+  # def delete
+  #   subscription = Stripe::Subscription.retrieve("sub_3R3PlB2YlJe84a")
+  #   subscription.delete(:at_period_end => true)
+  #   redirect_to invoices_path
+  #   flash.now[:notice] = "Uw abonnement is stopgezet, u kunt nog gebruik maken tot het einde van uw huidige periode."
+  # end
+
 end

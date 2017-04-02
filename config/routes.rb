@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'invoices#index'
+
   resources :quotes
   resources :relations
   resources :items
@@ -8,8 +10,7 @@ Rails.application.routes.draw do
   resources :subscribers
   devise_for :users, controllers: { registration: 'registrations'}
 
-  root 'invoices#index'
-  get 'test' => 'invoices#test'
-
+  get   '/kies-bestaande-sjabloon'   =>  'invoices#select_company'
+  get   '/kies-bestaande-relatie'    =>  'invoices#select_relation'
 
 end

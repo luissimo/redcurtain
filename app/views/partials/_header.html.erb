@@ -36,16 +36,17 @@
             <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
               <img src="assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle">
                                                 <span class="profile-username">
-                                                    Kenny Rigdon <br/>
-                                                    <small>Developer</small>
+                                                    <% ## current_user.email %>
                                                 </span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="javascript:void(0)"> Profile</a></li>
-              <li><a href="javascript:void(0)"><span class="badge badge-success pull-right">5</span> Settings </a></li>
-              <li><a href="javascript:void(0)"> Lock screen</a></li>
+              <li>
+                <%= link_to 'Mijn profiel', edit_user_registration_path %>
+              </li>
               <li class="divider"></li>
-              <li><a href="javascript:void(0)"> Logout</a></li>
+              <li>
+                <%= link_to 'Uitloggen', destroy_user_session_path, method: :delete %>
+              </li>
             </ul>
           </li>
         </ul>

@@ -5,9 +5,6 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
 
-  def test
-  end
-
   def index
     @invoices =  current_user.invoices.all
     flash.now[:notice] = 'U heeft nog geen facturen toegevoegd' if @invoices.empty?
@@ -49,6 +46,11 @@ class InvoicesController < ApplicationController
     @invoice.build_company
     @invoice.items.build
     @invoice.build_relation
+    if !current_user.invoices.all.last.nil?
+      @last_used_number = "Laatst gebruikt: " + current_user.invoices.all.last.number
+    else
+      @last_used_number = Time.now.year.to_s  +  "-0001"
+    end
   end
 
   # GET /invoices/1/edit
