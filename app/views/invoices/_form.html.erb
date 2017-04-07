@@ -240,7 +240,7 @@
     $("#choose_company").bind("change",function() {
       if ($(this).val() != undefined) {
         $.ajax({
-          url : "/kies-bestaande-sjabloon",
+          url : '/kies-bestaande-sjabloon',
           data: {'company': $(this).val()},
           dataType: "json",
           type: "GET",

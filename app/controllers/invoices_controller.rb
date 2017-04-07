@@ -18,7 +18,7 @@ class InvoicesController < ApplicationController
       @data_company["company_name"] = @company.company_name
       @data_company["btw_number"] = @company.btw_number
       @data_company["iban_number"] = @company.iban_number
-      @data_company["logo"] = @company.picture.url
+      # @data_company["logo"] = @company.picture.url
       render json: @data_company
     end
   end
