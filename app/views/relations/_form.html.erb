@@ -1,19 +1,16 @@
 <%= form_for @relation, :html => { :class => "form-horizontal customer" } do |f| %>
+      <div class="col-md-4 col-md-offset-4 text-center">
+        <% if @relation.errors.any? %>
+            <div class="alert alert-danger text-center">
+                <ul>
+                  <% @relation.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                  <% end %>
+                </ul>
+            </div>
+        <% end %>
+      </div>
     <div class="col-md-12 col-md-offset-2">
-      <% if @relation.errors.any? %>
-          <div id="error_expl" class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title"><%= pluralize(@relation.errors.count, "error") %> prohibited this customer from being saved:</h3>
-            </div>
-            <div class="panel-body">
-              <ul>
-                <% @relation.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-      <% end %>
 
       <div class="form-group">
         <%= f.label 'Bedrijfsnaam *', :class => 'control-label col-lg-2' %>

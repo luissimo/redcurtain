@@ -4,9 +4,7 @@
         <div class="col-md-4 col-md-offset-4 text-center">
           <% if @invoice.errors.any? %>
               <div class="alert alert-danger text-center" >
-                <h4>U heeft <%= pluralize(@invoice.errors.count, "error") %>:</h4>
-
-                <ul class="list-unstyled">
+                <ul>
                   <% @invoice.errors.full_messages.each do |message| %>
                       <li><%= message %></li>
                   <% end %>
